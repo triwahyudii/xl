@@ -75,17 +75,16 @@
         <h3>Alila</h3>
         <div class="gallery">
             <!-- Image -->
-             <!--
             <img src="" alt="alila">
-            -->
+            
             <!-- Video -->
-            <video src="/asia/alila/video/alila.mp4" ></video>
+            <video src="/asia/alila/video/alila.mp4" class="video-thumbnail"></video>
 
              <!--nativebanner-->
              <script async="async" data-cfasync="false" src="//seduceboozeblackmail.com/ae617720f07bb05c811e01e4189ea603/invoke.js"></script>
              <div id="container-ae617720f07bb05c811e01e4189ea603"></div>
              <!--end_nativebanner-->
-
+             
         </div>
     </div>
 
@@ -93,6 +92,46 @@
         <img id="modal-img" style="display: none;" alt="Zoomed Image">
         <video id="modal-video" controls style="display: none;"></video>
     </div>
+
+    <style>
+        /* Atur ukuran galeri */
+        .gallery {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Atur ukuran thumbnail gambar dan video */
+        .gallery img, .gallery .video-thumbnail {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* Gaya modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none; /* Awalnya modal disembunyikan */
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal img, .modal video {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
 
     <script>
         const modal = document.getElementById('modal');
@@ -114,9 +153,11 @@
                 } 
                 // Jika media adalah video
                 else if (media.tagName === 'VIDEO') {
+                    // Memutar video dalam layar penuh saat diklik
                     modalVideo.style.display = 'block';
                     modalVideo.src = media.src;
                     modalVideo.play();
+                    modalVideo.requestFullscreen();
 
                     modalImg.style.display = 'none';
                     modalImg.src = "";
@@ -129,6 +170,9 @@
             modalImg.src = "";
             modalVideo.pause();
             modalVideo.src = "";
+            if (document.fullscreenElement) {
+                document.exitFullscreen(); // Keluar dari layar penuh jika ada
+            }
         });
     </script>
 
@@ -140,5 +184,6 @@
     <!--socialbar-->
     <script type='text/javascript' src='//seduceboozeblackmail.com/36/80/4e/36804e98967796a16e098dd2fdef5c4d.js'></script>
 </body>
+
 
 </html>
